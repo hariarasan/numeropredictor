@@ -1,0 +1,36 @@
+<form (ngSubmit)="submit()" #mobileForm="ngForm">
+    <label for="mobile">Mobile Number:</label>
+    <input
+      type="text"
+      id="mobile"
+      name="mobile"
+      [(ngModel)]="mobileNumber"
+      required
+      pattern="^[0-9]{10}$"
+      #mobile="ngModel"
+      maxlength="10"
+    />
+    <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
+      <small *ngIf="mobile.errors?.['required']">Mobile number is required.</small>
+      <small *ngIf="mobile.errors?.['pattern']">Enter a valid 10-digit number.</small>
+    </div>
+  
+    <button type="submit" [disabled]="mobileForm.invalid">Submit</button>
+  </form>
+
+  <table border="1" cellpadding="8">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Prediction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entry of dataEntries">
+        <td>{{ entry[0] }}</td>
+        <td>{{ entry[1] }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
